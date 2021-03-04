@@ -65,7 +65,7 @@ class FLDyStackUnit extends FLDyRenderUnit {
       alignment: sum.getAlignment() ?? AlignmentDirectional.topStart,
       textDirection: sum.getTextDirection(),
       fit: sum.getStackFit() ?? StackFit.loose,
-      overflow: sum.getOverflow() ?? Overflow.clip,
+      clipBehavior: sum.getOverflow() ?? Clip.antiAlias,
       children: children,
     );
     return resolveSelf(self);
