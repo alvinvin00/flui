@@ -50,7 +50,7 @@ class _ToastPageState extends State<ToastPage> {
                     inset,
                     SizedBox(
                       width: 220,
-                      child: OutlineButton(
+                      child: OutlinedButton(
                         child: Text('Text Toast', style: textStyle),
                         onPressed: () => FLToast.showText(
                             text: 'Here is text',
@@ -60,7 +60,7 @@ class _ToastPageState extends State<ToastPage> {
                     inset,
                     SizedBox(
                       width: 220,
-                      child: OutlineButton(
+                      child: OutlinedButton(
                         child: Text('Loading Toast', style: textStyle),
                         onPressed: () {
                           var dismiss = FLToast.loading(text: 'Loading...');
@@ -73,7 +73,7 @@ class _ToastPageState extends State<ToastPage> {
                     inset,
                     SizedBox(
                       width: 220,
-                      child: OutlineButton(
+                      child: OutlinedButton(
                         child: Text('Success Toast', style: textStyle),
                         onPressed: () => FLToast.success(text: 'Fetch success'),
                       ),
@@ -81,7 +81,7 @@ class _ToastPageState extends State<ToastPage> {
                     inset,
                     SizedBox(
                       width: 220,
-                      child: OutlineButton(
+                      child: OutlinedButton(
                         child: Text('Info Toast', style: textStyle),
                         onPressed: () => FLToast.info(text: 'Some info'),
                       ),
@@ -89,7 +89,7 @@ class _ToastPageState extends State<ToastPage> {
                     inset,
                     SizedBox(
                       width: 220,
-                      child: OutlineButton(
+                      child: OutlinedButton(
                         child: Text('Error Toast', style: textStyle),
                         onPressed: () =>
                             FLToast.error(text: 'Something was wrong'),
@@ -128,7 +128,7 @@ class _ToastPageState extends State<ToastPage> {
                     inset,
                     SizedBox(
                       width: 220,
-                      child: OutlineButton(
+                      child: OutlinedButton(
                         child: Text('Position Top', style: textStyle),
                         onPressed: () => setState(() {
                           _toastPosition = FLToastPosition.top;
@@ -140,7 +140,7 @@ class _ToastPageState extends State<ToastPage> {
                     inset,
                     SizedBox(
                       width: 220,
-                      child: OutlineButton(
+                      child: OutlinedButton(
                         child: Text('Position Center', style: textStyle),
                         onPressed: () => setState(() {
                           _toastPosition = FLToastPosition.center;
@@ -152,7 +152,7 @@ class _ToastPageState extends State<ToastPage> {
                     inset,
                     SizedBox(
                       width: 220,
-                      child: OutlineButton(
+                      child: OutlinedButton(
                         child: Text('Position Bottom', style: textStyle),
                         onPressed: () => setState(() {
                           _toastPosition = FLToastPosition.bottom;

@@ -24,7 +24,7 @@ class _ListPageState extends State<ListPage> {
             SizedBox(height: 15),
             Container(
               width: 200,
-              child: RaisedButton(
+              child: ElevatedButton(
                 child: Text('Static List'),
                 onPressed: () {
                   Navigator.pushNamed(context, StaticListViewPage.routeName);
@@ -34,7 +34,7 @@ class _ListPageState extends State<ListPage> {
             SizedBox(height: 15),
             Container(
               width: 200,
-              child: RaisedButton(
+              child: ElevatedButton(
                 child: Text('Persistent Header'),
                 onPressed: () {
                   Navigator.pushNamed(context, PersistentHeaderPage.routeName);

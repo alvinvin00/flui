@@ -176,7 +176,7 @@ class FLDyStackUnitModel extends FLDyUnitModel {
       flStringToAlignmentDirectional(alignment);
   TextDirection getTextDirection() => flStringToTextDirection(textDirection);
   StackFit getStackFit() => flStringToStackFit(fit);
-  Overflow getOverflow() => flStringToOverflow(overflow);
+  Clip getOverflow() => flStringToOverflow(overflow);
 }
 
 @JsonSerializable()

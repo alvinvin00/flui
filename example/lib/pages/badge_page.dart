@@ -39,19 +39,21 @@ class _BadgePageState extends State<BadgePage> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: FLBadge(
-                child: Icon(Icons.home),
-                hidden: !_showBadge,
-                shape: FLBadgeShape.circle,
-              ),
-              title: Text('home')),
+            icon: FLBadge(
+              child: Icon(Icons.home),
+              hidden: !_showBadge,
+              shape: FLBadgeShape.circle,
+            ),
+            label: 'home',
+          ),
           BottomNavigationBarItem(
-              icon: FLBadge(
-                child: Icon(Icons.chat),
-                hidden: !_showBadge,
-                text: '99+',
-              ),
-              title: Text('chat')),
+            icon: FLBadge(
+              child: Icon(Icons.chat),
+              hidden: !_showBadge,
+              text: '99+',
+            ),
+            label: 'chat',
+          ),
           BottomNavigationBarItem(
             icon: FLBadge(
               child: Icon(Icons.shopping_cart),
@@ -59,7 +61,7 @@ class _BadgePageState extends State<BadgePage> {
               position: FLBadgePosition.topLeft,
               shape: FLBadgeShape.spot,
             ),
-            title: Text('cart'),
+            label: 'cart',
           )
         ],
       ),

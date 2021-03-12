@@ -16,18 +16,21 @@ class _HintsActionEmptyPageState extends State<HintsActionEmptyPage> {
         title: Text('Hints & Action'),
       ),
       body: FLEmptyContainer(
-          title: 'Request Failed',
-          detailText: 'Please check the network status and retry',
-          space: 12,
-          actionButton: Container(
-            width: 150,
-            height: 35,
-            child: RaisedButton(
-              textColor: Colors.white,
-              child: Text('Retry'),
-              onPressed: () => print('retry'),
+        title: 'Request Failed',
+        detailText: 'Please check the network status and retry',
+        space: 12,
+        actionButton: Container(
+          width: 150,
+          height: 35,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
             ),
-          )),
+            child: Text('Retry'),
+            onPressed: () => print('retry'),
+          ),
+        ),
+      ),
     );
   }
 }
