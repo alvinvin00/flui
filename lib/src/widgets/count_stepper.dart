@@ -1,6 +1,7 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'dart:math' as math;
 
 const double _kDefaultInputWidth = 40;
 const double _kDefaultFloatingTextWidth = 35;
@@ -15,21 +16,20 @@ const Color _kDefaultBackgroundColor = Color.fromRGBO(242, 243, 245, 1);
 
 class FLCountStepper extends StatefulWidget {
   FLCountStepper({
-    Key key,
-    @required this.controller,
+    Key? key,
+    required this.controller,
     this.onChanged,
     this.disabled = false,
     this.disableInput = true,
     this.inputWidth = _kDefaultInputWidth,
     this.actionColor,
-  })  : assert(controller != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// the controller of count values
   final FLCountStepperController controller;
 
   /// value changed callback
-  final ValueChanged<num> onChanged;
+  final ValueChanged<num>? onChanged;
 
   /// disable step button
   final bool disabled;
@@ -41,18 +41,18 @@ class FLCountStepper extends StatefulWidget {
   final double inputWidth;
 
   /// default is Theme.of(context).primaryColor
-  final Color actionColor;
+  final Color? actionColor;
 
   @override
   State<FLCountStepper> createState() => _FLCountStepperState();
 }
 
 class _FLCountStepperState extends State<FLCountStepper> {
-  FLCountStepperController _controller;
+  late FLCountStepperController _controller;
   TextEditingController _inputController = TextEditingController();
-  bool _minusEnabled;
-  bool _addEnabled;
-  int _maxLength;
+  late bool _minusEnabled;
+  late bool _addEnabled;
+  int? _maxLength;
 
   @override
   void initState() {
@@ -68,7 +68,7 @@ class _FLCountStepperState extends State<FLCountStepper> {
 
   void _assembleCountStepper() {
     _controller = widget.controller;
-    int number = _controller.value;
+    int? number = _controller.value;
     _inputController.value = TextEditingValue(text: '$number');
     _minusEnabled = !(widget.disabled || _controller.isMin());
     _addEnabled = !(widget.disabled || _controller.isMax());
@@ -88,7 +88,7 @@ class _FLCountStepperState extends State<FLCountStepper> {
     _updateEnableStates();
 
     if (widget.onChanged != null) {
-      widget.onChanged(_controller.number);
+      widget.onChanged!(_controller.number);
     }
   }
 
@@ -99,18 +99,18 @@ class _FLCountStepperState extends State<FLCountStepper> {
     _updateEnableStates();
 
     if (widget.onChanged != null) {
-      widget.onChanged(_controller.number);
+      widget.onChanged!(_controller.number);
     }
   }
 
   void _syncValueAndInput() {
     String text = _inputController.value.text;
-    if (text == null || text.trim().length == 0) {
+    if (text.trim().length == 0) {
       num regVal = math.min(_controller.max, math.max(0, _controller.min));
       text = '$regVal';
     }
 
-    if (_controller.value.compareTo(num.parse(text)) != 0) {
+    if ((_controller.value?.compareTo(num.parse(text)) ?? 0) != 0) {
       _controller.number = num.parse(text);
     }
   }
@@ -137,7 +137,7 @@ class _FLCountStepperState extends State<FLCountStepper> {
     _updateEnableStates();
 
     if (widget.onChanged != null) {
-      widget.onChanged(_controller.number);
+      widget.onChanged!(_controller.number);
     }
   }
 
@@ -154,9 +154,8 @@ class _FLCountStepperState extends State<FLCountStepper> {
     final ThemeData themeData = Theme.of(context);
     final Brightness brightness = themeData.brightness;
     final bool isDarkMode = brightness == Brightness.dark;
-    final Color buttonIconColor = widget.actionColor ?? isDarkMode
-        ? Colors.white
-        : themeData.primaryColor;
+    final Color buttonIconColor = widget.actionColor ??
+        (isDarkMode ? Colors.white : themeData.primaryColor);
     final Color inputBackgroundColor =
         isDarkMode ? Colors.transparent : _kDefaultBackgroundColor;
 
@@ -168,9 +167,8 @@ class _FLCountStepperState extends State<FLCountStepper> {
           padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.zero),
           foregroundColor: MaterialStateProperty.all<Color>(buttonIconColor),
         ),
-        child: Icon(Icons.remove,
-            size:
-                _kDefaultEleSize), //Text('-', textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
+        child: Icon(Icons.remove, size: _kDefaultEleSize),
+        //Text('-', textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
         onPressed: _minusEnabled ? _handleMinusPressed : null,
       ),
     );
@@ -178,7 +176,8 @@ class _FLCountStepperState extends State<FLCountStepper> {
     final Widget input = Container(
       width: widget.inputWidth,
       height: _kDefaultInputHeight,
-      padding: EdgeInsets.only(left: 3), // resolve text center issue
+      padding: EdgeInsets.only(left: 3),
+      // resolve text center issue
       decoration: BoxDecoration(
         color: inputBackgroundColor,
         borderRadius: BorderRadius.circular(3),
@@ -210,9 +209,8 @@ class _FLCountStepperState extends State<FLCountStepper> {
           padding: MaterialStateProperty.all(EdgeInsets.zero),
           foregroundColor: MaterialStateProperty.all(buttonIconColor),
         ),
-        child: Icon(Icons.add,
-            size:
-                _kDefaultEleSize), //Text('+', textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
+        child: Icon(Icons.add, size: _kDefaultEleSize),
+        //Text('+', textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
         onPressed: _addEnabled ? _handleAddPressed : null,
       ),
     );
@@ -246,9 +244,9 @@ class _FLCountStepperState extends State<FLCountStepper> {
 
 class _FLFloatingAnimationWrapper extends StatefulWidget {
   _FLFloatingAnimationWrapper({
-    Key key,
-    @required this.controller,
-    @required this.child,
+    Key? key,
+    required this.controller,
+    required this.child,
     this.marginLeft = 0,
     this.targetLeft = 0,
     this.marginTop = 0,
@@ -256,12 +254,12 @@ class _FLFloatingAnimationWrapper extends StatefulWidget {
     this.height,
   }) : super(key: key);
 
-  final Animation<double> controller;
+  final Animation<double>? controller;
   final double marginLeft;
   final double targetLeft;
   final double marginTop;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
   final Widget child;
 
   @override
@@ -270,8 +268,8 @@ class _FLFloatingAnimationWrapper extends StatefulWidget {
 
 class _FLFloatingAnimationWrapperState
     extends State<_FLFloatingAnimationWrapper> {
-  Animation<double> rotateAnim;
-  Animation<double> transRightAnim;
+  late Animation<double> rotateAnim;
+  late Animation<double> transRightAnim;
 
   @override
   void initState() {
@@ -279,20 +277,20 @@ class _FLFloatingAnimationWrapperState
     rotateAnim = Tween<double>(
       begin: 0,
       end: 1,
-    ).animate(widget.controller);
+    ).animate(widget.controller!);
 
     transRightAnim = Tween<double>(
       begin: widget.marginLeft,
       end: widget.targetLeft,
-    ).animate(widget.controller);
+    ).animate(widget.controller!);
   }
 
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: widget.controller,
+      animation: widget.controller!,
       child: widget.child,
-      builder: (BuildContext context, Widget child) {
+      builder: (BuildContext context, Widget? child) {
         return Positioned(
             top: widget.marginTop,
             left: transRightAnim.value,
@@ -314,21 +312,21 @@ class _FLFloatingAnimationWrapperState
 /// FLFloatingCountStepper can't edit input value.
 class FLFloatingCountStepper extends StatefulWidget {
   FLFloatingCountStepper({
-    Key key,
-    @required this.controller,
+    Key? key,
+    required this.controller,
     this.onChanged,
     this.disabled = false,
     this.labelWidth = _kDefaultFloatingTextWidth,
     this.labelTextStyle,
     this.actionColor,
-  })  : assert(controller != null && controller.min == 0),
+  })  : assert(controller.min == 0),
         super(key: key);
 
   /// the controller of count values
   final FLCountStepperController controller;
 
   /// value changed callback
-  final ValueChanged<num> onChanged;
+  final ValueChanged<num>? onChanged;
 
   /// disable step button
   final bool disabled;
@@ -337,10 +335,10 @@ class FLFloatingCountStepper extends StatefulWidget {
   final double labelWidth;
 
   /// the style of text
-  final TextStyle labelTextStyle;
+  final TextStyle? labelTextStyle;
 
   /// default is Theme.of(context).primaryColor
-  final Color actionColor;
+  final Color? actionColor;
 
   @override
   State<FLFloatingCountStepper> createState() => _FLFloatingCountStepperState();
@@ -348,11 +346,11 @@ class FLFloatingCountStepper extends StatefulWidget {
 
 class _FLFloatingCountStepperState extends State<FLFloatingCountStepper>
     with TickerProviderStateMixin {
-  FLCountStepperController _controller;
+  late FLCountStepperController _controller;
   TextEditingController _inputController = TextEditingController();
-  bool _minusEnabled;
-  bool _addEnabled;
-  AnimationController _animationController;
+  late bool _minusEnabled;
+  late bool _addEnabled;
+  AnimationController? _animationController;
 
   @override
   void initState() {
@@ -372,7 +370,7 @@ class _FLFloatingCountStepperState extends State<FLFloatingCountStepper>
 
   void _assembleCountStepper() {
     _controller = widget.controller;
-    int number = _controller.value;
+    int? number = _controller.value;
     _inputController.value = TextEditingValue(text: '$number');
     _minusEnabled = !(widget.disabled || _controller.isMin());
     _addEnabled = !(widget.disabled || _controller.isMax());
@@ -395,7 +393,7 @@ class _FLFloatingCountStepperState extends State<FLFloatingCountStepper>
     }
 
     if (widget.onChanged != null) {
-      widget.onChanged(_controller.number);
+      widget.onChanged!(_controller.number);
     }
   }
 
@@ -411,14 +409,15 @@ class _FLFloatingCountStepperState extends State<FLFloatingCountStepper>
     _updateEnableStates();
 
     if (widget.onChanged != null) {
-      widget.onChanged(_controller.number);
+      widget.onChanged!(_controller.number);
     }
   }
 
   void _syncValueAndInput() {
-    if (_controller.value.compareTo(num.parse(_inputController.text)) != 0) {
+    if ((_controller.value?.compareTo(num.parse(_inputController.text)) ?? 0) !=
+        0) {
       String text = _inputController.value.text;
-      if (text == null || text.trim().length == 0) {
+      if (text.trim().length == 0) {
         num regVal = math.min(_controller.max, math.max(0, _controller.min));
         text = '$regVal';
       }
@@ -441,13 +440,13 @@ class _FLFloatingCountStepperState extends State<FLFloatingCountStepper>
 
   Future<Null> _playMinusAnim() async {
     try {
-      await _animationController.forward().orCancel;
+      await _animationController!.forward().orCancel;
     } on TickerCanceled {}
   }
 
   Future<Null> _reversMinusAnim() async {
     try {
-      await _animationController.reverse().orCancel;
+      await _animationController!.reverse().orCancel;
     } on TickerCanceled {}
   }
 
@@ -455,7 +454,7 @@ class _FLFloatingCountStepperState extends State<FLFloatingCountStepper>
   void dispose() {
     _controller.dispose();
     _inputController.dispose();
-    _animationController.dispose();
+    _animationController!.dispose();
     super.dispose();
   }
 
@@ -532,26 +531,27 @@ class _FLFloatingCountStepperState extends State<FLFloatingCountStepper>
   }
 }
 
-class FLCountStepperController extends ValueNotifier<int> {
+class FLCountStepperController extends ValueNotifier<int?> {
   FLCountStepperController({
     this.defaultValue,
     this.min = 0,
     this.max = 999,
     this.step = 1,
   })  : assert(min < max),
-        super(defaultValue ?? min > 0 ? min : 0);
+        super(defaultValue ?? (min > 0 ? min : 0));
 
-  final int defaultValue;
+  final int? defaultValue;
   final int min;
   final int max;
   final int step;
 
-  num get number => value;
+  num get number => value!;
+
   set number(num newNum) {
     if (newNum > max) newNum = max;
     if (newNum < min) newNum = min;
 
-    value = newNum;
+    value = newNum as int;
   }
 
   bool isMin() {

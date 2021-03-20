@@ -57,7 +57,7 @@ class FLThemeTextStyles {
 }
 
 class FLThemeTool {
-  static Color parseColor(String colorStr, BuildContext ctx) {
+  static Color? parseColor(String? colorStr, BuildContext ctx) {
     if (colorStr == null) return null;
     if (colorStr.startsWith('@theme')) {
       // built in theme pattern like '@theme.primaryColor'.
@@ -120,11 +120,11 @@ class FLThemeTool {
           return null;
       }
     } else {
-      return Color(num.parse(colorStr));
+      return Color(num.parse(colorStr) as int);
     }
   }
 
-  static TextStyle parseTextStyle(String themeStyle, BuildContext ctx) {
+  static TextStyle? parseTextStyle(String themeStyle, BuildContext ctx) {
     if (themeStyle.startsWith('@textTheme')) {
       var descriptor = themeStyle.split('.').last;
       TextTheme textTheme = Theme.of(ctx).textTheme;

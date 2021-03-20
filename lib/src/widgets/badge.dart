@@ -11,7 +11,7 @@ const double _kDefaultRadius = -1;
 
 class FLBadge extends StatefulWidget {
   FLBadge(
-      {Key key,
+      {Key? key,
       this.color = Colors.red,
       this.shape = FLBadgeShape.circle,
       this.textStyle = const TextStyle(color: Colors.white, fontSize: 8),
@@ -19,9 +19,8 @@ class FLBadge extends StatefulWidget {
       this.hidden = false,
       this.radius = _kDefaultRadius,
       this.text,
-      @required this.child})
-      : assert(child != null),
-        super(key: key);
+      required this.child})
+      : super(key: key);
 
   final Color color;
   final FLBadgeShape shape;
@@ -32,7 +31,7 @@ class FLBadge extends StatefulWidget {
   /// Each shape will have a default radius.
   /// If u set this value, the [shape] property will be meaningless.
   final double radius;
-  final String text;
+  final String? text;
   final Widget child;
 
   @override
@@ -57,11 +56,11 @@ class FLBadgeState extends State<FLBadge> {
   Widget build(BuildContext context) {
     FLBadgeShape shape = widget.text != null ? widget.shape : FLBadgeShape.spot;
     double size = shape == FLBadgeShape.spot ? 2 * _kSpotRadius : _kBadgeSize;
-    Widget textChild = widget.text == null
+    Widget? textChild = widget.text == null
         ? null
         : Center(
             child: Text(
-              widget.text,
+              widget.text!,
               style: widget.textStyle,
               textAlign: TextAlign.center,
             ),

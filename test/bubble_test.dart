@@ -27,7 +27,7 @@ void main() {
           child: Text(title),
         ),
         itemBuilder: (BuildContext context) {
-          verify(navigatorObserver.didPush(any, any));
+          verify(navigatorObserver.didPush(any!, any));
           return [FLBubbleMenuItem(text: 'item', value: 'item')];
         },
       ),

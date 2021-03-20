@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 
 class FLPersistentHeaderConstraints extends BoxConstraints {
   FLPersistentHeaderConstraints({
-    this.state,
-    BoxConstraints boxConstraints,
-  })  : assert(state != null),
-        assert(boxConstraints != null),
-        super(
+    required this.state,
+    required BoxConstraints boxConstraints,
+  }) : super(
           minWidth: boxConstraints.minWidth,
           maxWidth: boxConstraints.maxWidth,
           minHeight: boxConstraints.minHeight,

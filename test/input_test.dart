@@ -13,7 +13,7 @@ void main() {
         height: double.infinity,
         child: FLAutoComplete(
             key: autoKey,
-            itemBuilder: (context, suggest) {
+            itemBuilder: (context, dynamic suggest) {
               expect(suggest, 'Hi');
               expect(Overlay.of(context) != null, true);
               return ListTile(title: Text(suggest));
@@ -24,7 +24,7 @@ void main() {
               child: TextField(
                   key: textFieldKey,
                   onChanged: (text) =>
-                      autoKey.currentState.updateSuggestionList(['Hi'])),
+                      autoKey.currentState!.updateSuggestionList(['Hi'])),
             )),
       ),
     ));

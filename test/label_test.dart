@@ -33,7 +33,7 @@ void main() {
 
     await tester.longPress(find.text('label'));
     await tester.pumpAndSettle();
-    verify(navigatorObserver.didPush(any, any));
+    verify(navigatorObserver.didPush(any!, any));
   });
 
   testWidgets('Marquee Label Test', (WidgetTester tester) async {

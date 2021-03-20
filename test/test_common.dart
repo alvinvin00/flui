@@ -7,22 +7,22 @@ MockNavigatorObserver navigatorObserver = MockNavigatorObserver();
 
 class TestContainer extends StatelessWidget {
   TestContainer({
-    Key key,
-    @required this.child,
+    Key? key,
+    required this.child,
     this.bottomWidget,
     this.appbar,
   }) : super(key: key);
 
   final Widget child;
-  final Widget bottomWidget;
-  final Widget appbar;
+  final Widget? bottomWidget;
+  final Widget? appbar;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorObservers: [navigatorObserver],
       home: Scaffold(
-        appBar: appbar,
+        appBar: appbar as PreferredSizeWidget?,
         body: Container(
           child: child,
         ),

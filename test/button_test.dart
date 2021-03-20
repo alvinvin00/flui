@@ -23,7 +23,7 @@ void main() {
     )));
 
     final double buttonW =
-        _buttonKey.currentContext.findRenderObject().paintBounds.width;
+        _buttonKey.currentContext!.findRenderObject()!.paintBounds.width;
     expect(normalFinder, findsOneWidget);
     expect(buttonW.compareTo(width), 0);
 
@@ -58,7 +58,7 @@ void main() {
     ));
 
     final double buttonW =
-        _raisedKey.currentContext.findRenderObject().paintBounds.width;
+        _raisedKey.currentContext!.findRenderObject()!.paintBounds.width;
     expect(buttonW.compareTo(width), 0);
     expect(textFinder, findsOneWidget);
 

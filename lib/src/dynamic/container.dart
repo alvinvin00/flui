@@ -8,7 +8,7 @@ import 'package:flui/src/dynamic/units/unit_model.dart';
 /// The container interface of dynamic widget
 class FLDyContainer extends StatefulWidget {
   FLDyContainer({
-    Key key,
+    Key? key,
     this.placeholder,
     this.jsonObject,
   })  : assert(placeholder != null || jsonObject != null),
@@ -17,7 +17,7 @@ class FLDyContainer extends StatefulWidget {
     FLDyLogger.logStartTime();
   }
 
-  final Widget placeholder;
+  final Widget? placeholder;
   final dynamic jsonObject;
 
   @override
@@ -25,7 +25,7 @@ class FLDyContainer extends StatefulWidget {
 }
 
 class FLDyContainerState extends State<FLDyContainer> {
-  Widget _renderContent;
+  Widget? _renderContent;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class FLDyContainerState extends State<FLDyContainer> {
       _renderContent = FLDyRenderParser.markupContent(unitModel);
       FLDyLogger.logEndTime('markup content');
     }
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       FLDyLogger.logEndTime('total');
     });
   }
@@ -69,7 +69,7 @@ class FLDyContainerState extends State<FLDyContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return _renderContent ?? widget.placeholder;
+    return _renderContent ?? widget.placeholder!;
   }
 }
 
