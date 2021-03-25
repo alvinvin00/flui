@@ -904,7 +904,7 @@ class FLDyUnitBoxShadow {
     final shadowColor = FLThemeTool.parseColor(color, context);
     return BoxShadow(
       color: shadowColor ?? const Color(0xFF000000),
-      offset: (offset?.toOffset())!,
+      offset: offset?.toOffset() ?? Offset.zero,
       blurRadius: blurRadius ?? 0.0,
       spreadRadius: spreadRadius ?? 0.0,
     );
