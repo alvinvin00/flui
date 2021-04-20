@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class ActionSheetPage extends StatefulWidget {
   static const String routeName = '/action-sheet';
+
   @override
   State<ActionSheetPage> createState() => _ActionSheetPageState();
 }
@@ -47,7 +48,9 @@ class _ActionSheetPageState extends State<ActionSheetPage> {
               Container(
                 width: 220,
                 child: FLRaisedButton(
-                  textColor: Colors.white,
+                  buttonStyle: ElevatedButton.styleFrom(
+                    textStyle: TextStyle(color: Colors.white),
+                  ),
                   onPressed: () {
                     showFLBottomSheet(
                         context: context,
@@ -75,7 +78,9 @@ class _ActionSheetPageState extends State<ActionSheetPage> {
               Container(
                 width: 220,
                 child: FLRaisedButton(
-                  textColor: Colors.white,
+                  buttonStyle: ElevatedButton.styleFrom(
+                    textStyle: TextStyle(color: Colors.white),
+                  ),
                   onPressed: () {
                     showFLBottomSheet(
                         context: context,
@@ -102,7 +107,9 @@ class _ActionSheetPageState extends State<ActionSheetPage> {
               Container(
                 width: 220,
                 child: FLRaisedButton(
-                  textColor: Colors.white,
+                  buttonStyle: ElevatedButton.styleFrom(
+                    textStyle: TextStyle(color: Colors.white),
+                  ),
                   child: Text('OperationSheet'),
                   onPressed: () {
                     showFLBottomSheet(

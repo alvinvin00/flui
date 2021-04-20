@@ -1,9 +1,10 @@
+import 'package:flui/flui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flui/flui.dart';
 
 class AppBarPage extends StatefulWidget {
   static const String routeName = '/appbar';
+
   @override
   State<AppBarPage> createState() => _AppBarPageState();
 }
@@ -65,19 +66,25 @@ class _AppBarPageState extends State<AppBarPage> {
           children: <Widget>[
             inset,
             FLRaisedButton(
-              textColor: Colors.white,
+              buttonStyle: ElevatedButton.styleFrom(
+                textStyle: TextStyle(color: Colors.white),
+              ),
               child: Text(subStr),
               onPressed: () => setState(() => _showSubTitle = !_showSubTitle),
             ),
             inset,
             FLRaisedButton(
-              textColor: Colors.white,
+              buttonStyle: ElevatedButton.styleFrom(
+                textStyle: TextStyle(color: Colors.white),
+              ),
               child: Text(loadStr),
               onPressed: () => setState(() => _showLoading = !_showLoading),
             ),
             inset,
             FLRaisedButton(
-              textColor: Colors.white,
+              buttonStyle: ElevatedButton.styleFrom(
+                textStyle: TextStyle(color: Colors.white),
+              ),
               child: Text(accStr),
               onPressed: () => setState(() => _showAccessory = !_showAccessory),
             ),

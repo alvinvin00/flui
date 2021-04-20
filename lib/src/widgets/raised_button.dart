@@ -1,86 +1,31 @@
-import 'package:flutter/material.dart';
 import 'package:flui/src/common/defines.dart';
+import 'package:flutter/material.dart';
 
 class FLRaisedButton extends StatelessWidget {
   FLRaisedButton({
     Key? key,
     required this.onPressed,
-    this.onHighlightChanged,
-    this.textTheme,
-    this.textColor,
-    this.disabledTextColor,
-    this.color,
-    this.disabledColor,
-    this.focusColor,
-    this.hoverColor,
-    this.highlightColor,
-    this.splashColor,
-    this.colorBrightness,
-    this.elevation,
-    this.hoverElevation,
-    this.focusElevation,
-    this.highlightElevation,
-    this.disabledElevation,
-    this.shape,
-    this.padding,
     this.clipBehavior,
     this.focusNode,
-    this.materialTapTargetSize,
-    this.animationDuration,
     this.expanded = false,
+    this.buttonStyle,
     required this.child,
   }) : super(key: key);
 
   final VoidCallback onPressed;
-  final ValueChanged<bool>? onHighlightChanged;
-  final ButtonTextTheme? textTheme;
-  final Color? textColor;
-  final Color? disabledTextColor;
-  final Color? color;
-  final Color? disabledColor;
-  final Color? focusColor;
-  final Color? hoverColor;
-  final Color? highlightColor;
-  final Color? splashColor;
-  final Brightness? colorBrightness;
-  final double? elevation;
-  final double? focusElevation;
-  final double? hoverElevation;
-  final double? highlightElevation;
-  final double? disabledElevation;
-  final ShapeBorder? shape;
-  final EdgeInsetsGeometry? padding;
+  final bool expanded;
   final Clip? clipBehavior;
   final FocusNode? focusNode;
-  final MaterialTapTargetSize? materialTapTargetSize;
-  final Duration? animationDuration;
-  final bool expanded;
+  final ButtonStyle? buttonStyle;
   final Widget? child;
 
   factory FLRaisedButton.icon({
     Key? key,
     required VoidCallback onPressed,
-    ValueChanged<bool>? onHighlightChanged,
-    ButtonTextTheme? textTheme,
-    Color? textColor,
-    Color? disabledTextColor,
-    Color? color,
-    Color? focusColor,
-    Color? hoverColor,
-    Color? disabledColor,
-    Color? highlightColor,
-    Color? splashColor,
-    Brightness? colorBrightness,
-    double? elevation,
-    double? highlightElevation,
-    double? disabledElevation,
-    ShapeBorder? shape,
-    EdgeInsetsGeometry? padding,
     Clip? clipBehavior,
     FocusNode? focusNode,
-    MaterialTapTargetSize? materialTapTargetSize,
-    Duration? animationDuration,
     FLPosition? iconPosition,
+    ButtonStyle? buttonStyle,
     double? spacing,
     required Widget icon,
     required Widget label,
@@ -99,30 +44,11 @@ class FLRaisedButton extends StatelessWidget {
           )
         : child;
 
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: onPressed,
-      onHighlightChanged: onHighlightChanged,
-      textTheme: textTheme,
-      textColor: textColor,
-      disabledTextColor: disabledTextColor,
-      color: color,
-      focusColor: focusColor,
-      hoverColor: hoverColor,
-      disabledColor: disabledColor,
-      highlightColor: highlightColor,
-      splashColor: splashColor,
-      colorBrightness: colorBrightness,
-      elevation: elevation,
-      focusElevation: focusElevation,
-      hoverElevation: hoverElevation,
-      highlightElevation: highlightElevation,
-      disabledElevation: disabledElevation,
-      shape: shape,
-      padding: padding,
+      style: buttonStyle,
       clipBehavior: clipBehavior ?? Clip.none,
       focusNode: focusNode,
-      materialTapTargetSize: materialTapTargetSize,
-      animationDuration: animationDuration,
       child: buttonChild,
     );
   }
@@ -132,60 +58,29 @@ class _FLRaisedButtonWithIcon extends FLRaisedButton
     with MaterialButtonWithIconMixin {
   _FLRaisedButtonWithIcon({
     Key? key,
-    this.iconPosition = FLPosition.left,
-    this.spacing = 8,
     required VoidCallback onPressed,
-    ValueChanged<bool>? onHighlightChanged,
-    ButtonTextTheme? textTheme,
-    Color? textColor,
-    Color? disabledTextColor,
-    Color? color,
-    Color? focusColor,
-    Color? hoverColor,
-    Color? disabledColor,
-    Color? highlightColor,
-    Color? splashColor,
-    Brightness? colorBrightness,
-    double? elevation,
-    double? highlightElevation,
-    double? disabledElevation,
-    ShapeBorder? shape,
-    EdgeInsetsGeometry? padding,
-    Clip? clipBehavior,
-    FocusNode? focusNode,
-    MaterialTapTargetSize? materialTapTargetSize,
-    Duration? animationDuration,
     required this.icon,
     required this.label,
+    this.iconPosition = FLPosition.left,
+    this.spacing = 8,
+    this.clipBehavior,
+    this.focusNode,
+    this.buttonStyle,
   }) : super(
             key: key,
+            buttonStyle: buttonStyle,
             onPressed: onPressed,
-            onHighlightChanged: onHighlightChanged,
-            textTheme: textTheme,
-            textColor: textColor,
-            disabledTextColor: disabledTextColor,
-            color: color,
-            hoverColor: hoverColor,
-            focusColor: focusColor,
-            disabledColor: disabledColor,
-            highlightColor: highlightColor,
-            splashColor: splashColor,
-            colorBrightness: colorBrightness,
-            elevation: elevation,
-            highlightElevation: highlightElevation,
-            disabledElevation: disabledElevation,
-            shape: shape,
-            padding: padding,
             clipBehavior: clipBehavior,
             focusNode: focusNode,
-            materialTapTargetSize: materialTapTargetSize,
-            animationDuration: animationDuration,
             child: null);
 
-  final FLPosition? iconPosition;
-  final double? spacing;
   final Widget icon;
   final Widget label;
+  final Clip? clipBehavior;
+  final FocusNode? focusNode;
+  final FLPosition? iconPosition;
+  final double? spacing;
+  final ButtonStyle? buttonStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -208,28 +103,10 @@ class _FLRaisedButtonWithIcon extends FLRaisedButton
             children: children,
           );
 
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: onPressed,
-      onHighlightChanged: onHighlightChanged,
-      textTheme: textTheme,
-      textColor: textColor,
-      disabledTextColor: disabledTextColor,
-      color: color,
-      hoverColor: hoverColor,
-      focusColor: focusColor,
-      disabledColor: disabledColor,
-      highlightColor: highlightColor,
-      splashColor: splashColor,
-      colorBrightness: colorBrightness,
-      elevation: elevation,
-      highlightElevation: highlightElevation,
-      disabledElevation: disabledElevation,
-      shape: shape,
-      padding: padding,
       clipBehavior: clipBehavior ?? Clip.none,
       focusNode: focusNode,
-      materialTapTargetSize: materialTapTargetSize,
-      animationDuration: animationDuration,
       child: buttonChild,
     );
   }

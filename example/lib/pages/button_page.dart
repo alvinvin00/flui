@@ -1,10 +1,13 @@
-import 'page_util.dart';
+import 'dart:math' as math;
+
 import 'package:flui/flui.dart';
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+
+import 'page_util.dart';
 
 class ButtonPage extends StatefulWidget {
   static const String routeName = '/button';
+
   @override
   State<ButtonPage> createState() => _ButtonPageState();
 }
@@ -67,16 +70,20 @@ class _ButtonPageState extends State<ButtonPage> {
         Container(
           child: FLRaisedButton(
             expanded: true,
-            textColor: Colors.white,
+            buttonStyle: ElevatedButton.styleFrom(
+              textStyle: TextStyle(color: Colors.white),
+            ),
             child: Text('Expanded Button', textAlign: TextAlign.center),
             onPressed: () => FLToast.info(text: 'Expanded Button'),
           ),
         ),
         SizedBox(height: 10),
         FLRaisedButton.icon(
-          padding: const EdgeInsets.all(5),
-          color: _mainColor,
-          textColor: Colors.white,
+          buttonStyle: ElevatedButton.styleFrom(
+            textStyle: TextStyle(color: Colors.white),
+            padding: const EdgeInsets.all(5),
+            primary: _mainColor,
+          ),
           onPressed: () =>
               setState(() => _iconPosRaised = _newIconPos(_iconPosRaised)),
           icon: Icon(Icons.account_box, color: Colors.white),
@@ -121,7 +128,8 @@ class _ButtonPageState extends State<ButtonPage> {
         SizedBox(height: 10),
         FLGradientButton.radial(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-          center: const Alignment(0.7, -0.6), // near the top right
+          center: const Alignment(0.7, -0.6),
+          // near the top right
           radius: 0.2,
           colors: [
             const Color(0xFFFFFF00), // yellow sun
