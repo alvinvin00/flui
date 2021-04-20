@@ -52,7 +52,7 @@ class FLEmptyContainerState extends State<FLEmptyContainer> {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = Theme.of(context).brightness == Brightness.dark;
-    final List<Widget?> children = <Widget?>[];
+    final List<Widget> children = <Widget>[];
     if (widget.customLoadingWidget != null) {
       _addChildAndSpacingIfNeeded(children, widget.customLoadingWidget);
     }
@@ -102,7 +102,7 @@ class FLEmptyContainerState extends State<FLEmptyContainer> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: children as List<Widget>,
+            children: children,
           ),
         ));
   }
